@@ -32,6 +32,8 @@ class App extends Component {
 					<EditCards
 					cards={cards}
 					mode={flip}
+					addCard={this.addCard}
+					deleteCard={this.deleteCard}
 					/>
 				)
 		}
@@ -41,6 +43,20 @@ class App extends Component {
 		this.setState(state => ({
 			studyMode: !state.studyMode
 		}))
+	}
+
+	addCard = (front, back) => {
+		this.setState(state => ({
+			cards: [...state.cards, { front, back }]
+		}));
+	}
+
+	deleteCard = (index) => {
+		this.setState(state => {
+			let cards = [...state.cards];
+			cards.splice(index, 1);
+			return { cards }
+		})
 	}
 }
 

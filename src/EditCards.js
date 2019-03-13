@@ -15,7 +15,15 @@ class EditCards extends React.Component {
 					<td>{card.front}</td>
 					<td>{card.back}</td>
 					<td>{card.learning}</td>
-					<td><Button color='red'size='tiny'>Delete</Button></td>
+					<td><Button
+								data-index={i}
+								onClick={this.deleteCard}
+								color='red'
+								size='tiny'
+							>
+							Delete
+						</Button>
+					</td>
 				</tr>
 			)
 		})
@@ -41,9 +49,9 @@ class EditCards extends React.Component {
 
 				<Form>
 					<Form.Group widths='equal'>
-						<Form.Input fluid name="front" placeholder="Question" value={this.state.front}/>
-						<Form.Input fluid name="back" placeholder="Answer" value={this.state.back} />
-						<Form.Button color='green' size='tiny'>Add Card</Form.Button>
+						<Form.Input onChange={this.handleChange} fluid name="front" placeholder="Question" value={this.state.front}/>
+						<Form.Input onChange={this.handleChange} fluid name="back" placeholder="Answer" value={this.state.back} />
+						<Form.Button onClick={this.addCard}color='green' size='tiny'>Add Card</Form.Button>
 					</Form.Group>
 				</Form>
 				<hr />
@@ -54,6 +62,24 @@ class EditCards extends React.Component {
 				</Container>
 			</div>
 		)
+	}
+
+	handleChange = (event) => {
+		this.setState({
+			[event.target.name]: event.target.value
+		})
+	}
+
+	addCard = () => {
+		this.props.addCard(this.state.front, this.state.back);
+		this.setState({
+			front: "",
+			back: ""
+		})
+	}
+
+	deleteCard = (e) => {
+		this.props.deleteCard(e.target.dataset.index);
 	}
 }
 
