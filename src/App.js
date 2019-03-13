@@ -6,7 +6,6 @@ import StudyCards from './StudyCards';
 
 class App extends Component {
 	state = {
-		cardNum: 0,
 		studyMode: false,
 		cards: [
 			{id: 1, front: "Question", back: "Answer", learning: false, },
@@ -25,6 +24,7 @@ class App extends Component {
 					<StudyCards
 					cards={cards}
 					mode={flip}
+					deckSize={this.state.cards.length}
 					/>
 				)
 		} else {
