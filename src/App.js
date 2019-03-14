@@ -10,21 +10,22 @@ class App extends Component {
 		cards: [
 			{id: 1, front: "Question", back: "Answer", learning: false, },
 			{id: 2, front: "let", back: "let is block scoped.", learning: true, },
-			{id: 3, front: "Arrow function", back: "=> ", learning: true, },
-		]
+			{id: 3, front: "Arrow function", back: "=>", learning: true, },
+		],
 	}
 
   render() {
 		const cards = this.state.cards
 		const mode = this.state.studyMode
 		const flip = this.flipMode
+		const size = this.state.cards.length
 
 		if (mode) {
 				return (
 					<StudyCards
 					cards={cards}
 					mode={flip}
-					deckSize={this.state.cards.length}
+					deckSize={size}
 					/>
 				)
 		} else {
